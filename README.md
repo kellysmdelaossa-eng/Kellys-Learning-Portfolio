@@ -5,7 +5,7 @@ Welcome to my academic e-portfolio for the **English III (Course 518008)** at Un
 This digital space is designed to document, monitor, and reflect on my language learning journey, focusing on autonomous study and the core course theme: **Leadership**.
 
 ## 👤 Student Profile
-* **Name:** Kellys
+* **Name:** Kellys De La Ossa Figueroa
 * **Diagnostic Level:** B2 (Upper-Intermediate) - Certified by the British Council Online Test.
 * **Goal:** Elevate my communicative competence, master academic writing, and expand my vocabulary to speak with more confidence.
 
