@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English III - Learning Portfolio | Kellys</title>
+    <style>
+        :root {
+            --primary-color: #0F172A; /* Azul Oscuro */
+            --secondary-color: #1E293B; /* Azul Grisáceo */
+            --accent-color: #E2E8F0; /* Gris Claro */
+            --highlight-color: #F59E0B; /* Amarillo/Oro UNAD */
+            --text-color: #334155; /* Texto */
+            --light-bg: #F8FAFC; /* Fondo Claro */
+            --card-bg: #FFFFFF; /* Fondo de Tarjetas */
+            --border-color: #E2E8F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Encabezado */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            border-bottom: 4px solid var(--highlight-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #94A3B8;
+        }
+
+        /* Navegación por pestañas */
+        nav {
+            background-color: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: #94A3B8;
+            padding: 1rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn:hover {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            color: white;
+            border-bottom-color: var(--highlight-color);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Contenedor Principal */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            min-height: 60vh;
+        }
+
+        /* Contenido de las pestañas */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilo de Tarjetas y Secciones */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--highlight-color);
+            padding-left: 0.75rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Cuadro de Reflexión Destacada */
+        .reflection-box {
+            background-color: #F1F5F9;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+            font-size: 1.05rem;
+        }
+
+        /* Estilo de Tablas Responsivas */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background: white;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+
+        tr:hover {
+            background-color: #F1F5F9;
+        }
+
+        /* Estilo para placeholders (Tareas futuras) */
+        .placeholder {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #64748B;
+        }
+
+        .placeholder-icon {
+            font-size: 4rem;
+            color: #CBD5E1;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #E2E8F0;
+            color: #475569;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge.b2 {
+            background-color: #FEF3C7;
+            color: #D97706;
+            border: 1px solid #FCD34D;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #94A3B8;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <h1>Kellys' Learning Portfolio</h1>
+        <p>English III (Course 518008) • UNAD</p>
+    </header>
+
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-container">
+            <button class="tab-btn active" onclick="openTab(event, 'home')">Home</button>
+            <button class="tab-btn" onclick="openTab(event, 'task1')">Task 1: Self-Directed Plan</button>
+            <button class="tab-btn" onclick="openTab(event, 'task2')">Task 2</button>
+            <button class="tab-btn" onclick="openTab(event, 'task4')">Task 4</button>
+            <button class="tab-btn" onclick="openTab(event, 'task6')">Task 6</button>
+            <button class="tab-btn" onclick="openTab(event, 'task8')">Task 8</button>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main>
+
+        <!-- Pestaña HOME -->
+        <div id="home" class="tab-content active">
+            <div class="card">
+                <h2>Welcome to My English Portfolio!</h2>
+                <p>Hello! My name is <strong>Kellys</strong>. This e-portfolio is a digital space designed to document, monitor, and reflect on my language learning journey throughout English III.</p>
+                <p>Here you will find my initial self-reflection diagnostics, SMART progress goals, and the continuous academic deliverables developed during the semester.</p>
+                
+                <div style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div class="card" style="margin-bottom: 0; background-color: var(--light-bg); border-color: var(--border-color);">
+                        <h3>Student Level</h3>
+                        <p style="font-size: 1.1rem; margin-bottom: 0;">Diagnostic Result: <span class="badge b2">B2 (Upper-Intermediate)</span></p>
+                        <p style="font-size: 0.85rem; color: #64748B; margin-top: 0.5rem;">As evaluated by the British Council online test.</p>
+                    </div>
+                    <div class="card" style="margin-bottom: 0; background-color: var(--light-bg); border-color: var(--border-color);">
+                        <h3>Course Info</h3>
+                        <p style="font-size: 1rem; margin-bottom: 0;"><strong>Course:</strong> English III</p>
+                        <p style="font-size: 1rem; margin-bottom: 0;"><strong>Institution:</strong> UNAD</p>
+                        <p style="font-size: 1rem; margin-bottom: 0;"><strong>Period:</strong> 2026 II PERIODO 16-04</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña TASK 1 -->
+        <div id="task1" class="tab-content">
+            <!-- Subsección 1: Self Reflection -->
+            <div class="card">
+                <h2>Self-Directed Learning Plan (Task 1)</h2>
+                <h3>Step 1: Self-Reflection</h3>
+                <p>An honest analysis of my linguistic strengths, weaknesses, and expectations at the beginning of the English III course:</p>
+                
+                <div class="reflection-box">
+                    "My greatest strength is reading because I easily understand the general meaning of texts. My listening is good, but it could be better. However, speaking and writing are much more difficult for me. When I speak, I hesitate and forget words. I often have ideas on the tip of my tongue, but it seems my brain and mouth are not working properly, so I need more synonyms to express myself with more confidence. Finally, writing is the hardest skill. I hope to improve these weaknesses in this course."
+                </div>
+            </div>
+
+            <!-- Subsección 2: SMART Goals -->
+            <div class="card">
+                <h3>Step 2: SMART Goals Setup</h3>
+                <p>Specific, Measurable, Achievable, Relevant, and Time-bound targets established for this semester:</p>
+
+                <!-- SMART Goal 1 -->
+                <h4>Goal 1: Speaking & Vocabulary (To reduce hesitation)</h4>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">Criteria</th>
+                                <th>Definition / Action Plan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Specific</strong></td><td>I want to improve my speaking fluency and expand my vocabulary with synonyms to reduce hesitation when talking.</td></tr>
+                            <tr><td><strong>Measurable</strong></td><td>I will learn 10 new synonyms every week in a journal and record a 3-minute voice note of myself every two weeks to track my progress.</td></tr>
+                            <tr><td><strong>Achievable</strong></td><td>I can practice speaking alone about daily topics or routines for 15 minutes, three times a week.</td></tr>
+                            <tr><td><strong>Relevant</strong></td><td>This goal is important because I need to express my ideas clearly without getting stuck during my speaking encounters.</td></tr>
+                            <tr><td><strong>Time-bound</strong></td><td>I will achieve this goal by the end of this semester.</td></tr>
+                            <tr style="background-color: #FEF3C7;"><td><strong>SMART Goal Statement</strong></td><td><strong>I will practice speaking English for 15 minutes three times a week, keep a vocabulary journal of 10 new synonyms weekly, and record myself every two weeks to reduce hesitation and improve fluency by the end of this semester.</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SMART Goal 2 -->
+                <h4>Goal 2: Writing & Grammar (To face the hardest skill)</h4>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">Criteria</th>
+                                <th>Definition / Action Plan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Specific</strong></td><td>I want to improve my writing skills and sentence structure (grammar).</td></tr>
+                            <tr><td><strong>Measurable</strong></td><td>I will write a short paragraph of 60 to 100 words every week and use a grammar checker to analyze and correct my errors.</td></tr>
+                            <tr><td><strong>Achievable</strong></td><td>I can spend 30 minutes every Saturday writing about a weekly topic and correcting it.</td></tr>
+                            <tr><td><strong>Relevant</strong></td><td>Writing is the most challenging skill for me, and I need to write clear essays for my English III course tasks.</td></tr>
+                            <tr><td><strong>Time-bound</strong></td><td>I will achieve noticeable improvement within the next 8 weeks.</td></tr>
+                            <tr style="background-color: #FEF3C7;"><td><strong>SMART Goal Statement</strong></td><td><strong>I will write a short academic paragraph of 60 to 100 words every Saturday and use an online grammar checker to identify and correct my errors to improve my sentence structure within the next 8 weeks.</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SMART Goal 3 -->
+                <h4>Goal 3: Listening (To move from good to excellent)</h4>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">Criteria</th>
+                                <th>Definition / Action Plan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Specific</strong></td><td>I want to enhance my listening comprehension of native English speakers.</td></tr>
+                            <tr><td><strong>Measurable</strong></td><td>I will listen to an English podcast or watch an educational video for 15 minutes every day.</td></tr>
+                            <tr><td><strong>Achievable</strong></td><td>I can easily watch English YouTube videos or Netflix series with English subtitles.</td></tr>
+                            <tr><td><strong>Relevant</strong></td><td>Improving my listening will help me understand complex topics, natural pronunciations, and participate better in class.</td></tr>
+                            <tr><td><strong>Time-bound</strong></td><td>I will achieve this goal within the next 4 weeks.</td></tr>
+                            <tr style="background-color: #FEF3C7;"><td><strong>SMART Goal Statement</strong></td><td><strong>I will listen to English podcasts or watch videos for 15 minutes daily with English subtitles to expand my listening comprehension and pick up natural phrasing within the next 4 weeks.</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Subsección 3: Schedule -->
+            <div class="card">
+                <h3>Step 3: Weekly Study Schedule</h3>
+                <p>This is my comprehensive timetable designed to coordinate my daily routines, SMART targets, and course requirements (Webconferences, CIPAS, and Speaking Encounters):</p>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Hours</th>
+                                <th>Resource / Material</th>
+                                <th>Activity Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Monday</strong></td>
+                                <td>07:00 - 08:00<br>19:00 - 19:30</td>
+                                <td>UNAD Bibliographies & Spotify</td>
+                                <td><strong>Morning:</strong> Study course materials (1 hr).<br><strong>Night:</strong> Listen to a podcast (15 mins) & note down 3 synonyms (15 mins).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tuesday</strong></td>
+                                <td>07:00 - 08:00<br>19:00 - 19:30</td>
+                                <td>UNAD Bibliographies, YouTube & Recorder</td>
+                                <td><strong>Morning:</strong> Study course materials (1 hr).<br><strong>Night:</strong> Watch video with English subtitles (15 mins) & record speaking diary (15 mins).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Wednesday</strong></td>
+                                <td>07:00 - 08:00<br>15:00 - 16:30<br>19:00 - 19:30</td>
+                                <td>UNAD Bibliographies, MS Teams & Spotify</td>
+                                <td><strong>Morning:</strong> Study course materials (1 hr).<br><strong>Afternoon:</strong> Attend live Webconferences (Sep 2, Sep 30, Oct 28).<br><strong>Night:</strong> Listen to podcast (15 mins) & write 3 synonyms (15 mins).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Thursday</strong></td>
+                                <td>07:00 - 08:00<br>19:00 - 19:30</td>
+                                <td>UNAD Bibliographies, YouTube & Recorder</td>
+                                <td><strong>Morning:</strong> Study course materials (1 hr).<br><strong>Night:</strong> Watch educational video (15 mins) & practice spontaneous speech (15 mins).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Friday</strong></td>
+                                <td>07:00 - 08:00<br>19:00 - 19:30</td>
+                                <td>UNAD Bibliographies & Journal</td>
+                                <td><strong>Morning:</strong> Study course materials (1 hr).<br><strong>Night:</strong> Listen to podcast (15 mins) & complete vocabulary log with 4 synonyms (15 mins).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Saturday</strong></td>
+                                <td>10:00 - 11:30</td>
+                                <td>Grammar Checker, Teams & Campus</td>
+                                <td>Writing practice (30 mins). Join live Speaking Encounters or participate in CIPAS sessions (1 hour).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sunday</strong></td>
+                                <td>14:00 - 18:00</td>
+                                <td>Netflix/Streaming & UNAD Guide</td>
+                                <td><strong>Movie Time (14:00-16:00):</strong> Watch a movie in English with English subtitles (2 hrs).<br><strong>Study Time (16:00-18:00):</strong> Read English III units and prepare tasks (2 hrs).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña TASK 2 (Placeholder) -->
+        <div id="task2" class="tab-content">
+            <div class="card placeholder">
+                <div class="placeholder-icon">📂</div>
+                <h2>Task 2: Exploration of Leadership Identity</h2>
+                <p class="badge">Phase: Intermediate</p>
+                <p style="margin-top: 1rem;">This section will contain my upcoming Descriptive Essay on leadership profiles.</p>
+                <p style="font-size: 0.9rem; color: #94A3B8;">Progress updates will be posted as the academic schedule advances.</p>
+            </div>
+        </div>
+
+        <!-- Pestaña TASK 4 (Placeholder) -->
+        <div id="task4" class="tab-content">
+            <div class="card placeholder">
+                <div class="placeholder-icon">🎤</div>
+                <h2>Task 4: World Leader Interview</h2>
+                <p class="badge">Phase: Intermediate</p>
+                <p style="margin-top: 1rem;">This section will showcase the interview questions, profile research, and dialogue structures compiled for my selected world leader.</p>
+                <p style="font-size: 0.9rem; color: #94A3B8;">Progress updates will be posted as the academic schedule advances.</p>
+            </div>
+        </div>
+
+        <!-- Pestaña TASK 6 (Placeholder) -->
+        <div id="task6" class="tab-content">
+            <div class="card placeholder">
+                <div class="placeholder-icon">🎙️</div>
+                <h2>Task 6: Expression of the Leader's Voice</h2>
+                <p class="badge">Phase: Intermediate</p>
+                <p style="margin-top: 1rem;">This section will house the direct link and transcript of my collaborative leadership podcast episode.</p>
+                <p style="font-size: 0.9rem; color: #94A3B8;">Progress updates will be posted as the academic schedule advances.</p>
+            </div>
+        </div>
+
+        <!-- Pestaña TASK 8 (Placeholder) -->
+        <div id="task8" class="tab-content">
+            <div class="card placeholder">
+                <div class="placeholder-icon">🏆</div>
+                <h2>Task 8: Learning Achievements Portfolio</h2>
+                <p class="badge">Phase: Final</p>
+                <p style="margin-top: 1rem;">This section will contain my final self-assessment reflections, showcasing my language development throughout the academic period.</p>
+                <p style="font-size: 0.9rem; color: #94A3B8;">Progress updates will be posted as the academic schedule advances.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2026 - Portfolio created by <strong>Kellys</strong> for English III.</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #64748B;">Universidad Nacional Abierta y a Distancia (UNAD)</p>
+    </footer>
+
+    <!-- Script de navegación -->
+    <script>
+        function openTab(evt, tabId) {
+            // Ocultar todos los contenidos de las pestañas
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            // Quitar la clase "active" de todos los botones de navegación
+            const tabButtons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Mostrar la pestaña actual y marcar el botón como activo
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            
+            // Subir al inicio suavemente al cambiar de pestaña
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
